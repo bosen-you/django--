@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h1>新增留言</h1>
     <h1>留言列表</h1>
     <!-- Ordered list (ol)-->
     <ul>
-      {% for msg in message_list %}
-      <!-- List item-->
-      <!-- <li>{{ msg.created }} <a href="/message/{{ msg.id }}"></a>{{ msg.subject}}</li> -->
-      <li>{{ msg.created }} <a href="{% url 'msg_read' msg.id%}"></a>{{ msg.subject}}</li>
-      {% endfor %}
+        {% for msg in message_list %}
+        <!-- List item-->
+        <!-- <li>{{ msg.created }} <a href="/message/{{ msg.id }}"></a>{{ msg.subject}}</li> -->
+        <li>
+            {{ msg.created }} 
+            <a href="{% url 'msg_read' msg.id%}">{{ msg.subject}}</a>
+            {% if  user.is_authenticated %}
+                <a href="{% url 'msg_delete' msg.id%}">刪除</a>
+            {% endif %}
+            
+        </li>
+        {% endfor %}
     </ul>
 {% endblock %}
