@@ -10,3 +10,7 @@ class Message(models.Model):
     created = models.DateTimeField('留言時間' , auto_now_add = True)
     updated = models.DateTimeField('更新時間' , auto_now = True)
     
+    #顯示名稱
+    def __str__(self):
+        return self.subject
+    
